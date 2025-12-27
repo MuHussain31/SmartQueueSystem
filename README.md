@@ -1,7 +1,7 @@
 # Smart Queue Management System
 
 ## 1. Project Overview
-This is a full-stack web application designed to manage queues efficiently. Built using the **MERN Stack (MongoDB, Express, React, Node.js)**, this system allows users to join queues virtually and allows administrators to manage customer flow in real-time.
+This is a full-stack web application designed to manage queues efficiently. It allows users to join a queue, track their status in real-time, and helps administrators manage service flow.
 
 The application is fully containerized using **Docker** for easy deployment.
 
@@ -18,33 +18,61 @@ The application is fully containerized using **Docker** for easy deployment.
 If you wish to run the project without Docker, follow these steps:
 
 ### Backend Setup
-1. Navigate to the backend directory:
+
+1. **Navigate to the backend directory:**
    ```bash
    cd backend
    npm install
-   npm start
+   npm run dev
+   ```
 
    ### Frontend Setup
-   1. Navigate to the frontend directory:
+
+2. **Navigate to the frontend directory:**
+   Open a new terminal window (keep the backend running) and run:
+   ```bash
    cd frontend
    npm install
    npm start
+```
+## 3. Docker Setup (Easy Deployment)
 
-   Docker Run Commands (Recommended)
-To run the complete application (Frontend + Backend + Database) using Docker, ensure Docker Desktop is running and execute the following command in the root directory:
+Since this project is containerized, you can run the entire stack (Frontend, Backend, and Database) with a single command.
 
-Build and run:
-docker-compose up --build
+1. **Ensure Docker Desktop is running** on your machine.
 
-Stop the Application:
-docker-compose down
+2. **Run Docker Compose:**
+   ```bash
+   docker-compose up --build
+```
+ 3. **Access the Application:**
+   * **Frontend:** http://localhost:3000
+   * **Backend API:** http://localhost:5000
+   * **MongoDB:** mongodb://localhost:27017
 
-Once running, access the application at:
+4. **Stop the Containers:**
+   To stop the application, press `Ctrl + C` in the terminal or run:
+   ```bash
+   docker-compose down
 
-Frontend: http://localhost:3000
+## 3. Project Structure
 
-Backend API: http://localhost:5000
-
+```text
+/
+├── backend/                # Node.js & Express Server
+│   ├── models/             # Mongoose Models (Database Schema)
+│   ├── routes/             # API Routes
+│   ├── .env                # Environment variables
+│   └── server.js           # Entry point for Backend
+│
+├── frontend/               # React Application
+│   ├── public/             # Static assets
+│   ├── src/                # React source code
+│   └── package.json        # Frontend dependencies
+│
+├── docker-compose.yml      # Docker configuration for multi-container setup
+└── README.md               # Project Documentation
+```
 
 
    

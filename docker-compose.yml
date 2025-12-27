@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 1. Backend Service
+  server:
+    build: ./backend
+    container_name: queue_backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb+srv://bilalyousuf:aabbcc.112233@cluster0.jn1ve1i.mongodb.net/smartQueueDB
+      - JWT_SECRET=supersecretkey123
+      - EMAIL_USER=mby.7460@gmail.com
+      - EMAIL_PASS=lynvmipnvpksytuj
+    networks:
+      - mern-app
+
+  # 2. Frontend Service
+  client:
+    build: ./frontend
+    container_name: queue_frontend
+    ports:
+      - "5173:5173"  # If using Vite
+      - "3000:3000"  # If using Create-React-App
+    stdin_open: true # Needed for React to exit correctly
+    tty: true
+    depends_on:
+      - server
+    networks:
+      - mern-app
+
+networks:
+  mern-app:
+    driver: bridge
